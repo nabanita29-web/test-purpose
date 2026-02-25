@@ -54,7 +54,10 @@ app.post('/todo', async (req, res) => {
     // const d = req.body.key2;
     // const i = req.body.key3;
     // const s = req.body.key4;
-    const { t, d, i, s } = req.body;
+    const t = req.query.t;
+    const d = req.query.d;
+    const i = req.query.i;
+    const s = req.query.s;
     await Todo.query(`INSERT INTO todofor (task, dateof, id, status) VALUES ($1, $2, $3, $4)`,[t, d, i, s]);
     // var result = await Todo.query(`SELECT * FROM users`);
     // res.redirect(`/${rows}`)
