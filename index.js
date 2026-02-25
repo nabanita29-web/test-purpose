@@ -30,7 +30,7 @@ app.post('/user', async (req, res) => {
     // res.send(userid)
 })
 //-------------------------------
-app.post('/todo', async (req, res) => {
+app.post('/todo', (req, res) => {
     
     // Todo.query(`INSERT INTO users DEFAULT VALUES`)
     const t = req.body.key1;
