@@ -2,7 +2,7 @@ const express = require("express")
 const app = express()
 const Todo = require('./models/todo_models.js')
 // const Todo = require("./models/todo_models")
-// const cors = require('cors')
+const cors = require('cors')
 // mongoose.connect('mongodb://127.0.0.1:27017/todo-crud')
 // mongoose.connect('mongodb://mongo:sEuUeLFnrNRZEfjoiRMcIHOIKYgIaQia@mongodb.railway.internal:27017')
 // .then(() => { console.log("DB connected") })
@@ -10,7 +10,7 @@ const Todo = require('./models/todo_models.js')
 app.set('view engine', 'ejs')
 Todo.connect().then(()=>console.log("Connected"))
 app.use(express.json())
-// app.use(cors())
+app.use(cors())
 // Todo.query(`CREATE TABLE todofor(task TEXT, dateof DATE, id TEXT, status TEXT, PRIMARY KEY(task, dateof, id, status))`)
 // const t = 'testing';
 // Todo.query(`INSERT INTO users (email, password) VALUES ('naba@gmail.com', 'gvhvhv')`)
@@ -19,12 +19,12 @@ app.use(express.json())
 app.post('/user', async (req, res) => {
     const email = req.body.key1;
     const password = req.body.key2;
-    Todo.query(
+    await Todo.query(
         `INSERT INTO users (email, password) VALUES ($1, $2)`,
         [email, password]
     );
     var result = await Todo.query(`SELECT * FROM users`);
-
+    res.json(result);
 })
 
 //-------------------------------
@@ -52,11 +52,12 @@ app.post('/todo', async (req, res) => {
     const i = req.body.key3;
     const s = req.body.key4;
 
-    Todo.query(
+    await Todo.query(
         `INSERT INTO todofor (task, dateof, id, status) VALUES ($1, $2, $3, $4)`,
         [t, d, i, s]
     );
     var result = await Todo.query(`SELECT * FROM todofor`);
+    res.json(result);
     
 })
 
