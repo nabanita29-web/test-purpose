@@ -16,12 +16,12 @@ app.use(express.json())
 // Todo.query(`INSERT INTO users (email, password) VALUES ('naba@gmail.com', 'gvhvhv')`)
 // Todo.query(`INSERT INTO todos (task, dateof, id, status) VALUES ($1, '2026-02-02', 'naba', 'not')`,[t]);
 // --------------------------------------------------------------
-app.post('/user', (req, res) => {
+app.post('/user', async (req, res) => {
     
     // Todo.query(`INSERT INTO users DEFAULT VALUES`)
     const email = req.body.key1;
     const password = req.body.key2;
-    Todo.query(`INSERT INTO users (email, password) VALUES ($1, $2)`,[email, password]);
+    await Todo.query(`INSERT INTO users (email, password) VALUES ($1, $2)`,[email, password]);
     // var result = await Todo.query(`SELECT * FROM users`);
     // res.redirect(`/${rows}`)
     // res.redirect(`/?q='rows'`)
@@ -47,7 +47,7 @@ app.post('/user', (req, res) => {
 // })
 //----------------------------------------
 // -----------------------------------------------------------------
-app.post('/todo', (req, res) => {
+app.post('/todo', async (req, res) => {
     
     // Todo.query(`INSERT INTO users DEFAULT VALUES`)
     const t = req.body.key1;
@@ -55,7 +55,7 @@ app.post('/todo', (req, res) => {
     const i = req.body.key3;
     const s = req.body.key4;
     
-    Todo.query('INSERT INTO todofor (task, dateof, id, status) VALUES ($1, $2, $3, $4)',[t, d, i, s]);
+    await Todo.query('INSERT INTO todofor (task, dateof, id, status) VALUES ($1, $2, $3, $4)',[t, d, i, s]);
     // var result = await Todo.query(`SELECT * FROM users`);
     // res.redirect(`/${rows}`)
     // res.redirect(`/?q='rows'`)
