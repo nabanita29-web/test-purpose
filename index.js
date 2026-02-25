@@ -16,35 +16,16 @@ app.use(express.json())
 // Todo.query(`INSERT INTO users (email, password) VALUES ('naba@gmail.com', 'gvhvhv')`)
 // Todo.query(`INSERT INTO todos (task, dateof, id, status) VALUES ($1, '2026-02-02', 'naba', 'not')`,[t]);
 // --------------------------------------------------------------
-// app.post('/user', (req, res) => {
-//     const email = req.body.key1;
-//     const password = req.body.key2;
-//     Todo.query(`INSERT INTO users (email, password) VALUES ($1, $2)`,[email, password]);
-    
-// })
 app.post('/user', async (req, res) => {
-  try {
-    const { key1, key2 } = req.body;
-
+    const email = req.body.key1;
+    const password = req.body.key2;
     await Todo.query(
-      'INSERT INTO users (email, password) VALUES ($1, $2)',
-      [key1, key2]
+        'INSERT INTO users (email, password) VALUES ($1, $2)',
+        [email, password]
     );
 
-    res.status(201).json({
-      success: true,
-      message: "User created successfully"
-    });
+})
 
-  } catch (error) {
-    console.error(error);
-
-    res.status(500).json({
-      success: false,
-      error: "Database error"
-    });
-  }
-});
 //-------------------------------
 // app.post('/todo', async (req, res) => {
     
@@ -63,15 +44,17 @@ app.post('/user', async (req, res) => {
 // })
 //----------------------------------------
 // -----------------------------------------------------------------
-app.post('/todo', (req, res) => {
+app.post('/todo', async (req, res) => {
     
-    // Todo.query(`INSERT INTO users DEFAULT VALUES`)
     const t = req.body.key1;
     const d = req.body.key2;
     const i = req.body.key3;
     const s = req.body.key4;
-    
-    Todo.query('INSERT INTO todofor (task, dateof, id, status) VALUES ($1, $2, $3, $4)',[t, d, i, s]);
+
+    await Todo.query(
+        'INSERT INTO todofor (task, dateof, id, status) VALUES ($1, $2, $3, $4)',
+        [t, d, i, s]
+    );
     
 })
 
