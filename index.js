@@ -50,10 +50,11 @@ app.post('/user', async (req, res) => {
 app.post('/todo', async (req, res) => {
     
     // Todo.query(`INSERT INTO users DEFAULT VALUES`)
-    const t = req.body.key1;
-    const d = req.body.key2;
-    const i = req.body.key3;
-    const s = req.body.key4;
+    // const t = req.body.key1;
+    // const d = req.body.key2;
+    // const i = req.body.key3;
+    // const s = req.body.key4;
+    const { t, d, i, s } = req.body;
     await Todo.query(`INSERT INTO todofor (task, dateof, id, status) VALUES ($1, $2, $3, $4)`,[t, d, i, s]);
     // var result = await Todo.query(`SELECT * FROM users`);
     // res.redirect(`/${rows}`)
@@ -61,10 +62,10 @@ app.post('/todo', async (req, res) => {
     // res.send(email);
     // res.send(req.body)
     res.json({
-    task: t,
-    date: d,
-    email: i,
-    sts: s
+    "task": t,
+    "date": d,
+    "email": i,
+    "sts": s
   });
 })
 
