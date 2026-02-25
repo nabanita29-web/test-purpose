@@ -11,8 +11,8 @@ app.set('view engine', 'ejs')
 Todo.connect().then(()=>console.log("Connected"))
 app.use(express.json())
 // app.use(cors())
-// Todo.query(`CREATE TABLE users(email TEXT PRIMARY KEY NOT NULL, password TEXT NOT NULL)`)
-const t = 'testing';
+// Todo.query(`CREATE TABLE todofor(task TEXT, dateof DATE, id TEXT, status TEXT, PRIMARY KEY(task, dateof, id, status))`)
+// const t = 'testing';
 // Todo.query(`INSERT INTO users (email, password) VALUES ('naba@gmail.com', 'gvhvhv')`)
 // Todo.query(`INSERT INTO todos (task, dateof, id, status) VALUES ($1, '2026-02-02', 'naba', 'not')`,[t]);
 // --------------------------------------------------------------
@@ -60,7 +60,7 @@ app.post('/todo', async (req, res) => {
     // res.redirect(`/?q='rows'`)
     // res.send(email);
     // res.send(req.body)
-    // res.send(userid)
+    res.send(d);
 })
 
  app.get('/getdata', async (req, res) => {
