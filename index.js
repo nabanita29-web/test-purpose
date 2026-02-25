@@ -19,10 +19,11 @@ app.use(express.json())
 app.post('/user', async (req, res) => {
     const email = req.body.key1;
     const password = req.body.key2;
-    await Todo.query(
+    Todo.query(
         'INSERT INTO users (email, password) VALUES ($1, $2)',
         [email, password]
     );
+    var result = await Todo.query(`SELECT * FROM users`);
 
 })
 
@@ -51,10 +52,11 @@ app.post('/todo', async (req, res) => {
     const i = req.body.key3;
     const s = req.body.key4;
 
-    await Todo.query(
+    Todo.query(
         'INSERT INTO todofor (task, dateof, id, status) VALUES ($1, $2, $3, $4)',
         [t, d, i, s]
     );
+    var result = await Todo.query(`SELECT * FROM todofor`);
     
 })
 
