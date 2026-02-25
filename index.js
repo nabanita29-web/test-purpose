@@ -12,9 +12,9 @@ Todo.connect().then(()=>console.log("Connected"))
 app.use(express.json())
 // app.use(cors())
 // Todo.query(`CREATE TABLE users(email TEXT PRIMARY KEY NOT NULL, password TEXT NOT NULL)`)
-
+const t = 'testing';
 // Todo.query(`INSERT INTO users (email, password) VALUES ('naba@gmail.com', 'gvhvhv')`)
-// Todo.query(`INSERT INTO todos (task, dateof, id, status) VALUES ('hg', '2026-02-02', 'naba', 'not')`)
+Todo.query(`INSERT INTO todos (task, dateof, id, status) VALUES ($1, '2026-02-02', 'naba', 'not')`,[t]);
 // --------------------------------------------------------------
 app.post('/user', async (req, res) => {
     
@@ -37,7 +37,7 @@ app.post('/todo', async (req, res) => {
     const d = req.body.key2;
     const i = req.body.key3;
     const s = req.body.key4;
-    await Todo.query(`INSERT INTO todos (task, dateof, id, status) VALUES ($1, $2, $3, $4) RETURNING *`,[t, d, i, s]);
+    await Todo.query(`INSERT INTO todos (task, dateof, id, status) VALUES ($1, $2, $3, $4)`,[t, d, i, s]);
     // var result = await Todo.query(`SELECT * FROM todos`);
     // res.redirect(`/${rows}`)
     // res.redirect(`/?q='rows'`)
