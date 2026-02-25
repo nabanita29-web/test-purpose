@@ -60,7 +60,7 @@ app.post('/todo', async (req, res) => {
     // res.redirect(`/?q='rows'`)
     // res.send(email);
     // res.send(req.body)
-    res.send(d);
+    res.send(i);
 })
 
  app.get('/getdata', async (req, res) => {
