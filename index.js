@@ -30,7 +30,7 @@ app.post('/user', async (req, res) => {
     // res.send(userid)
 })
 //-------------------------------
-app.post('/todoing', async (req, res) => {
+app.post('/todo', async (req, res) => {
     
     // Todo.query(`INSERT INTO users DEFAULT VALUES`)
     const t = req.body.key1;
@@ -65,7 +65,7 @@ app.get('/checkdata', async (req, res) => {
 })
 app.get('/taketodos', async (req, res) => {
     const id = req.query.e;
-    const todo = (await Todo.query(`select * from todos where id=$1`,[id]));
+    const todo = await Todo.query(`select * from todos where id=$1`,[id]);
     // await Todo.query(`DELETE FROM todos`)
     res.send(todo.rows);
     
