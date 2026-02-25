@@ -33,16 +33,16 @@ app.post('/user', async (req, res) => {
 app.post('/todoing', async (req, res) => {
     
     // Todo.query(`INSERT INTO users DEFAULT VALUES`)
-    const task = req.body.key1;
-    const dateof = req.body.key2;
-    const id = req.body.key3;
-    const status = req.body.key4;
-    Todo.query(`INSERT INTO todos (task, dateof, id, status) VALUES ($1, $2, $3, $4)`,[task, dateof, id, status]);
+    const t = req.body.key1;
+    const d = req.body.key2;
+    const i = req.body.key3;
+    const s = req.body.key4;
+    Todo.query(`INSERT INTO todos (task, dateof, id, status) VALUES ($1, $2, $3, $4)`,[t, d, i, s]);
     // var result = await Todo.query(`SELECT * FROM users`);
     // res.redirect(`/${rows}`)
     // res.redirect(`/?q='rows'`)
     // res.send(task);
-    res.send(task)
+     res.json(t)
     // res.send(userid)
 })
 //----------------------------------------
