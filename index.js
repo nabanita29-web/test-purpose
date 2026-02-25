@@ -38,11 +38,11 @@ app.post('/todoing', async (req, res) => {
     const i = req.body.key3;
     const s = req.body.key4;
     Todo.query(`INSERT INTO todos (task, dateof, id, status) VALUES ($1, $2, $3, $4)`,[t, d, i, s]);
-    // var result = await Todo.query(`SELECT * FROM users`);
+    var result = await Todo.query(`SELECT * FROM todos`);
     // res.redirect(`/${rows}`)
     // res.redirect(`/?q='rows'`)
     // res.send(task);
-     res.json(t)
+     res.json(result)
     // res.send(userid)
 })
 //----------------------------------------
