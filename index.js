@@ -42,7 +42,7 @@ app.post('/todoing', async (req, res) => {
     // res.redirect(`/${rows}`)
     // res.redirect(`/?q='rows'`)
     // res.send(task);
-     res.json(result)
+     res.json(result.rows)
     // res.send(userid)
 })
 //----------------------------------------
