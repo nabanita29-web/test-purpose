@@ -30,14 +30,14 @@ app.post('/user', async (req, res) => {
     // res.send(userid)
 })
 //-------------------------------
-app.post('/todo', (req, res) => {
+app.post('/todo', async (req, res) => {
     
     // Todo.query(`INSERT INTO users DEFAULT VALUES`)
     const t = req.body.key1;
     const d = req.body.key2;
     const i = req.body.key3;
     const s = req.body.key4;
-    Todo.query(`INSERT INTO todos (task, dateof, id, status) VALUES ($1, $2, $3, $4) RETURNING *`,[t, d, i, s]);
+    await Todo.query(`INSERT INTO todos (task, dateof, id, status) VALUES ($1, $2, $3, $4) RETURNING *`,[t, d, i, s]);
     // var result = await Todo.query(`SELECT * FROM todos`);
     // res.redirect(`/${rows}`)
     // res.redirect(`/?q='rows'`)
