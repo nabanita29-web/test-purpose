@@ -14,7 +14,7 @@ app.use(express.json())
 // Todo.query(`CREATE TABLE users(email TEXT PRIMARY KEY NOT NULL, password TEXT NOT NULL)`)
 
 // Todo.query(`INSERT INTO users (email, password) VALUES ('naba@gmail.com', 'gvhvhv')`)
-
+// Todo.query(`INSERT INTO todos (task, dateof, id, status) VALUES ('hg', '2026-02-02', 'naba', 'not')`)
 // --------------------------------------------------------------
 app.post('/user', async (req, res) => {
     
@@ -22,7 +22,7 @@ app.post('/user', async (req, res) => {
     const email = req.body.key1;
     const password = req.body.key2;
     Todo.query(`INSERT INTO users (email, password) VALUES ($1, $2)`,[email, password]);
-    var result = await Todo.query(`SELECT * FROM users`);
+    // var result = await Todo.query(`SELECT * FROM users`);
     // res.redirect(`/${rows}`)
     // res.redirect(`/?q='rows'`)
     // res.send(email);
@@ -37,12 +37,12 @@ app.post('/todo', async (req, res) => {
     const d = req.body.key2;
     const i = req.body.key3;
     const s = req.body.key4;
-    Todo.query(`INSERT INTO todos (task, dateof, id, status) VALUES ($1, $2, $3, $4)`,[t, d, i, s]);
-    var result = await Todo.query(`SELECT * FROM todos`);
+    Todo.query(`INSERT INTO todos (task, dateof, id, status) VALUES ($1, $2, $3, $4) RETURNING *`,[t, d, i, s]);
+    // var result = await Todo.query(`SELECT * FROM todos`);
     // res.redirect(`/${rows}`)
     // res.redirect(`/?q='rows'`)
     // res.send(task);
-     res.json(result.rows)
+    //  res.json(result.rows)
     // res.send(userid)
 })
 //----------------------------------------
