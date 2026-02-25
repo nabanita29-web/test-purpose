@@ -30,6 +30,23 @@ app.post('/user', async (req, res) => {
     // res.send(userid)
 })
 //-------------------------------
+// app.post('/todo', async (req, res) => {
+    
+//     // Todo.query(`INSERT INTO users DEFAULT VALUES`)
+//     const t = req.body.key1;
+//     const d = req.body.key2;
+//     const i = req.body.key3;
+//     const s = req.body.key4;
+//     await Todo.query(`INSERT INTO todos (task, dateof, id, status) VALUES ($1, $2, $3, $4)`,[t, d, i, s]);
+//     // var result = await Todo.query(`SELECT * FROM todos`);
+//     // res.redirect(`/${rows}`)
+//     // res.redirect(`/?q='rows'`)
+//     // res.send(task);
+//     //  res.json(result.rows)
+//     // res.send(userid)
+// })
+//----------------------------------------
+// -----------------------------------------------------------------
 app.post('/todo', async (req, res) => {
     
     // Todo.query(`INSERT INTO users DEFAULT VALUES`)
@@ -37,17 +54,14 @@ app.post('/todo', async (req, res) => {
     const d = req.body.key2;
     const i = req.body.key3;
     const s = req.body.key4;
-    await Todo.query(`INSERT INTO todos (task, dateof, id, status) VALUES ($1, $2, $3, $4)`,[t, d, i, s]);
-    // var result = await Todo.query(`SELECT * FROM todos`);
+    Todo.query(`INSERT INTO todos (task, dateof, id, status) VALUES ($1, $2, $3,$4)`,[t, d, i, s]);
+    // var result = await Todo.query(`SELECT * FROM users`);
     // res.redirect(`/${rows}`)
     // res.redirect(`/?q='rows'`)
-    // res.send(task);
-    //  res.json(result.rows)
+    // res.send(email);
+    // res.send(req.body)
     // res.send(userid)
 })
-//----------------------------------------
-// -----------------------------------------------------------------
-
 
  app.get('/getdata', async (req, res) => {
     const email = req.query.e;
@@ -71,9 +85,7 @@ app.get('/taketodos', async (req, res) => {
     
 })
 //------------------------
-app.get('/', (req, res) => {
-    res.send({"key": "check"})
-})
+
 app.post('/', (req, res) => {
     res.send("<h1>Hello!</h1>")
 })
