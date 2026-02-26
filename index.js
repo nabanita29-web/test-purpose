@@ -67,7 +67,7 @@ app.get('/taketodos', async (req, res) => {
     const id = req.query.e;
     const todo = (await Todo.query(`select * from todofor where id=$1`,[id]));
     // await Todo.query(`DELETE FROM todos`)
-    res.send(todo);
+    res.json(todo.rows);
 
 })
 //------------------------
