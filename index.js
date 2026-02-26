@@ -50,7 +50,7 @@ app.put('/todone', async (req, res) => {
     // Todo.query(`INSERT INTO users DEFAULT VALUES`)
     const task = req.body.key1;
     const id = req.body.key2;
-    await Todo.query(`UPDATE todofor SET task=$1 WHERE id=$2`,[task, id]);
+    await Todo.query(`UPDATE todofor SET status='done' (WHERE task=$1 AND id=$2 AND dateof=$3)`,[task.task, id, task.date]);
     // var result = await Todo.query(`SELECT * FROM users`);
     // res.redirect(`/${rows}`)
     // res.redirect(`/?q='rows'`)
@@ -62,7 +62,8 @@ app.delete('/clean', async (req, res) => {
 
     // Todo.query(`INSERT INTO users DEFAULT VALUES`)
     const id = req.body.key1;
-    await Todo.query(`DELETE FROM todofor WHERE id=$1`,[id]);
+    const task = req.body.key2;
+    await Todo.query(`DELETE FROM todofor WHERE (task=$1 AND id=$2 AND dateof=$3 and status='done')`,[task.task, id, task.date]);
     // var result = await Todo.query(`SELECT * FROM users`);
     // res.redirect(`/${rows}`)
     // res.redirect(`/?q='rows'`)
