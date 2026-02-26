@@ -51,7 +51,7 @@ app.put('/todone', async (req, res) => {
     const task = req.body.key1;
     const id = req.body.key2;
     console.log(task);
-    await Todo.query(`UPDATE todofor SET status='done' (WHERE task=$1 AND id=$2 AND dateof=$3)`,[task.task, id, task.date]);
+    await Todo.query(`UPDATE todofor SET status='done' WHERE (task=$1 AND id=$2 AND dateof=$3)`,[task.task, id, task.date]);
     // var result = await Todo.query(`SELECT * FROM users`);
     // res.redirect(`/${rows}`)
     // res.redirect(`/?q='rows'`)
