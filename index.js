@@ -1,15 +1,15 @@
-const express = require("express")
-const app = express()
-const Todo = require('./models/todo_models.js')
+const express = require("express");
+const app = express();
+const Todo = require('./models/todo_models.js');
 // const Todo = require("./models/todo_models")
 // const cors = require('cors')
 // mongoose.connect('mongodb://127.0.0.1:27017/todo-crud')
 // mongoose.connect('mongodb://mongo:sEuUeLFnrNRZEfjoiRMcIHOIKYgIaQia@mongodb.railway.internal:27017')
 // .then(() => { console.log("DB connected") })
 
-app.set('view engine', 'ejs')
-Todo.connect().then(()=>console.log("Connected"))
-app.use(express.json())
+app.set('view engine', 'ejs');
+Todo.connect().then(()=>console.log("Connected"));
+app.use(express.json());
 // app.use(cors())
 // Todo.query(`CREATE TABLE users(email TEXT PRIMARY KEY NOT NULL, password TEXT NOT NULL)`)
 
@@ -59,7 +59,7 @@ app.get('/getdata', async (req, res) => {
 app.get('/checkdata', async (req, res) => {
     const email = req.query.e;
     const password = req.query.pswd;
-    const todo = (await Todo.query(`select * from users where (email=$1 AND password=$2)`,[email, password])).rowCount?res.send({"status": "s"}):res.send({"status": "f"});
+    const todo = (await Todo.query(`select * from users where (email=$1 AND password=$2)`,[email, password])).rowCount?(res.send({"status": "s"})):(res.send({"status": "f"}));
     // await Todo.query(`DELETE FROM todos`)
 
 })
