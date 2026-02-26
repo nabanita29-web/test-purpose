@@ -27,7 +27,7 @@ app.post('/user', async (req, res) => {
     // res.redirect(`/?q='rows'`)
     // res.send(email);
     // res.send(req.body)
-    // res.send(userid)
+    res.send(req.body);
 })
 //-------------------------------
 app.post('/todoing', async (req, res) => {
@@ -59,7 +59,7 @@ app.get('/getdata', async (req, res) => {
 app.get('/checkdata', async (req, res) => {
     const email = req.query.e;
     const password = req.query.pswd;
-    const todo = (await Todo.query(`select * from users where (email=$1 AND password=$2)`,[email, password])).rowCount?(res.json({ status: "s" })):(res.json({ status: "f" }));
+    const todo = (await Todo.query(`select * from users where (email=$1 AND password=$2)`,[email, password])).rowCount?(res.send({"status": "s"})):(res.send({"status": "f"}));
     // await Todo.query(`DELETE FROM todos`)
 
 })
