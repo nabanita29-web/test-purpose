@@ -45,6 +45,31 @@ app.post('/todoing', async (req, res) => {
     res.send(req.body)
     // res.send(userid)
 })
+app.put('/todone', async (req, res) => {
+
+    // Todo.query(`INSERT INTO users DEFAULT VALUES`)
+    const task = req.body.key1;
+    const id = req.body.key2;
+    await Todo.query(`UPDATE todofor SET task=$1 WHERE id=$2`,[task, id]);
+    // var result = await Todo.query(`SELECT * FROM users`);
+    // res.redirect(`/${rows}`)
+    // res.redirect(`/?q='rows'`)
+    // res.send(task);
+    res.send(req.body)
+    // res.send(userid)
+})
+app.delete('/clean', async (req, res) => {
+
+    // Todo.query(`INSERT INTO users DEFAULT VALUES`)
+    const id = req.body.key1;
+    await Todo.query(`DELETE FROM todofor WHERE id=$1`,[id]);
+    // var result = await Todo.query(`SELECT * FROM users`);
+    // res.redirect(`/${rows}`)
+    // res.redirect(`/?q='rows'`)
+    // res.send(task);
+    res.send(req.body)
+    // res.send(userid)
+})
 //----------------------------------------
 // -----------------------------------------------------------------
 
