@@ -59,7 +59,7 @@ app.get('/getdata', async (req, res) => {
 app.get('/checkdata', async (req, res) => {
     const email = req.query.e;
     const password = req.query.pswd;
-    const todo = (await Todo.query(`select * from users where (email=$1 AND password=$2)`,[email, password])).rowCount?(res.send({"status": "s"})):(res.send({"status": "f"}));
+    const todo = (await Todo.query(`select * from users where (email=$1 AND password=$2)`,[email, password])).rowCount?(res.json({ status: "s" })):(res.json({ status: "f" }));
     // await Todo.query(`DELETE FROM todos`)
 
 })
